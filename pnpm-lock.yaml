@@ -4,6 +4,9 @@ dependencies:
   inquirer:
     specifier: ^9.2.5
     version: 9.2.5
+  jest-coverage-badges:
+    specifier: ^1.1.2
+    version: 1.1.2
 
 devDependencies:
   '@babel/core':
@@ -18,6 +21,9 @@ devDependencies:
   eslint:
     specifier: ^8.40.0
     version: 8.40.0
+  husky:
+    specifier: ^8.0.0
+    version: 8.0.0
   jest:
     specifier: ^29.5.0
     version: 29.5.0
@@ -2429,6 +2435,12 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
+  /husky@8.0.0:
+    resolution: {integrity: sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
   /iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -2711,6 +2723,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /jest-coverage-badges@1.1.2:
+    resolution: {integrity: sha512-44A7i2xR6os8+fWk8ZRM6W4fKiD2jwKOLU9eB3iTIIWACd9RbdvmiCNpQZTOsUBhKvz7aQ/ASFhu5JOEhWUOlg==}
+    engines: {node: '>=6.11', npm: '>=5.3'}
+    hasBin: true
+    dependencies:
+      mkdirp: 0.5.1
+    dev: false
 
   /jest-diff@29.5.0:
     resolution: {integrity: sha512-LtxijLLZBduXnHSniy0WMdaHjmQnt3g5sa16W4p0HqukYTTsyTW3GD1q41TyGl5YFXj/5B2U6dlh5FM1LIMgxw==}
@@ -3173,6 +3193,18 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
     dev: true
+
+  /minimist@0.0.8:
+    resolution: {integrity: sha512-miQKw5Hv4NS1Psg2517mV4e4dYNaO3++hjAvLOAzKqZ61rH8NS1SK+vbfBWZ5PY/Me/bEWhUwqMghEW5Fb9T7Q==}
+    dev: false
+
+  /mkdirp@0.5.1:
+    resolution: {integrity: sha512-SknJC52obPfGQPnjIkXbmA6+5H15E+fR+E4iR2oQ3zzCLbd7/ONua69R/Gw7AgkTLsRG+r5fzksYwWe1AgTyWA==}
+    deprecated: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+    hasBin: true
+    dependencies:
+      minimist: 0.0.8
+    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
