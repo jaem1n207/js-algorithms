@@ -1,8 +1,10 @@
 # js-algorithms
 
+![coverage badge](./assets/badge-branches.svg)
 ![repo size](https://img.shields.io/github/repo-size/jaem1n207/js-algorithms.svg)
 
 ## Description
+
 이 저장소는 다양한 알고리즘 문제를 해결한 JavaScript 기반 저장소입니다.
 
 ## Table of Contents
@@ -58,6 +60,7 @@ JS 파일을 실행하려면 Node.js 또는 ES6 구문을 지원하는 환경이
 ```bash
 pnpm run lint
 ```
+
 모든 테스트 실행
 
 ```bash
