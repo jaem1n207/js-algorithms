@@ -1,6 +1,6 @@
 /** @see https://jestjs.io/docs/cli#options */
 
-module.exports = {
+export default {
   verbose: true,
   moduleFileExtensions: ['js', 'json'],
   testEnvironment: 'node',
