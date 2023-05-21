@@ -1,5 +1,7 @@
 # js-algorithms
 
+![repo size](https://img.shields.io/github/repo-size/jaem1n207/js-algorithms.svg)
+
 ## Description
 이 저장소는 다양한 알고리즘 문제를 해결한 JavaScript 기반 저장소입니다.
 
