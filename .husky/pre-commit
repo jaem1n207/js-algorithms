@@ -1,4 +1,10 @@
+# chmod +x .husky/pre-commit
+
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm test:badges && cp ./coverage/badge-branches.svg ./assets/badge-branches.svg
+./scripts/update-coverage-badge.sh
+
+pnpm test:badges && git add ./assets/badge-branches.svg
+
+exit 0
