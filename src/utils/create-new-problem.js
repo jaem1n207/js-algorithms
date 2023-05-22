@@ -4,18 +4,13 @@ import path from 'path';
 
 const validNameRegex = /^[a-zA-Z0-9-_]+$/;
 
-const kebabToCamelCase = (str) => str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+const kebabToCamelCase = str => str.replace(/-([a-z])/g, g => g[1].toUpperCase());
 
 // 폴더가 존재하지 않는 경우 폴더가 생성되도록 하는 함수
-const ensureDirExists = (dirPath) => {
+const ensureDirExists = dirPath => {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
-};
-
-// 파일 작성하는 함수
-const writeFileSync = (filePath, data) => {
-  fs.writeFileSync(filePath, data);
 };
 
 // 문제 링크를 입력받는 함수
@@ -43,13 +38,13 @@ const getLinkFromUser = async () => {
 };
 
 // 무슨 문제인지 입력받는 함수
-const getProblemNameFromUser = async (categoryPath) => {
+const getProblemNameFromUser = async categoryPath => {
   const { problem } = await inquirer.prompt({
     type: 'input',
     name: 'problem',
     message: '문제 이름 입력:',
     // kebab-case로 변환
-    filter: (input) =>
+    filter: input =>
       input
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -70,7 +65,7 @@ const getProblemNameFromUser = async (categoryPath) => {
 };
 
 // 폴더 이름을 입력받는 함수
-const getFolderNameFromUser = async (directories) => {
+const getFolderNameFromUser = async (directories, srcPath) => {
   directories.push(new inquirer.Separator());
   directories.push('[Add new folder]');
   directories.push('[Cancel]');
@@ -93,7 +88,7 @@ const getFolderNameFromUser = async (directories) => {
       name: 'newFolderName',
       message: '새 폴더 이름 입력:',
       // kebab-case로 변환
-      filter: (input) =>
+      filter: input =>
         input
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
@@ -102,7 +97,7 @@ const getFolderNameFromUser = async (directories) => {
         if (!validNameRegex.test(input)) {
           return '폴더 이름에는 영문, 숫자, -, _만 사용할 수 있습니다.';
         }
-        if (fs.existsSync(path.join(srcDir, input))) {
+        if (fs.existsSync(path.join(srcPath, input))) {
           return '이미 존재하는 폴더입니다. 다른 이름을 입력해주세요.';
         }
 
@@ -121,9 +116,11 @@ async function main() {
   ensureDirExists(srcPath);
 
   // 'src' 폴더 내의 모든 폴더 가져오기
-  const directories = fs.readdirSync(srcPath).filter((file) => fs.statSync(path.join(srcPath, file)).isDirectory());
+  const directories = fs
+    .readdirSync(srcPath)
+    .filter(file => fs.statSync(path.join(srcPath, file)).isDirectory());
 
-  const category = await getFolderNameFromUser(directories);
+  const category = await getFolderNameFromUser(directories, srcPath);
   const categoryPath = path.join(srcPath, category);
   ensureDirExists(categoryPath);
 
