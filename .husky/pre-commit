@@ -3,11 +3,20 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# staged 상태에 .test.js 파일이 있는지 확인합니다
-if git diff --cached --name-only -- '*.test.js'; then
-  pnpm test:badges
-  ./scripts/update-coverage-badge.sh
-  git add ./assets/badge-branches.svg
-fi
+function updateCoverageBadge() {
+  # staged 상태에 .test.js 파일이 있는지 확인합니다.
+  if git diff --quiet --cached --name-only -- '*.test.js'
+  then
+    echo "No '*.test.js' files to commit. Skipping pre-commit hook."
 
-exit 0
+    exit 0
+  else
+    pnpm test:badges
+    ./scripts/update-coverage-badge.sh
+    git add ./assets/badge-branches.svg
+
+    printf "\n\n\033[1;33m%s\033[m\n" "📝  Test files are updated. Update coverage badge."
+  fi
+}
+
+updateCoverageBadge
