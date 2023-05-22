@@ -3,8 +3,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-./scripts/update-coverage-badge.sh
-
-pnpm test:badges && git add ./assets/badge-branches.svg
+# staged 상태에 .test.js 파일이 있는지 확인합니다
+if git diff --cached --name-only -- '*.test.js'; then
+  pnpm test:badges
+  ./scripts/update-coverage-badge.sh
+  git add ./assets/badge-branches.svg
+fi
 
 exit 0
