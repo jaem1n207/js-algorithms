@@ -1,6 +1,6 @@
 # js-algorithms
 
-![coverage badge](./assets/badge-branches.svg)
+![coverage badge](./assets/badge-statements.svg)
 ![repo size](https://img.shields.io/github/repo-size/jaem1n207/js-algorithms.svg)
 
 ## Description
