@@ -2,17 +2,17 @@
 
 #!/bin/bash
 
-# Current date
-DATE=`date`
+# 커밋 ID 가져오기
+COMMIT_ID=$(./scripts/get-commit-id.sh)
 
-# Read the SVG file
+# SVG 파일 읽어오기
 SVG_CONTENT=`cat ./coverage/badge-branches.svg`
 
-# Add a comment with the current date at the beginning
-SVG_CONTENT="<!-- Generated on $DATE -->"$'\n'"$SVG_CONTENT"
+# 시작 부분에 마지막 커밋 ID가 있는 주석 추가
+SVG_CONTENT="<!-- Last commit id: $COMMIT_ID -->"$'\n'"$SVG_CONTENT"
 
-# Save the new content back into the SVG file
+# SVG_CONTENT를 SVG 파일에 다시 저장합니다
 echo "$SVG_CONTENT" > ./coverage/badge-branches.svg
 
-# Copy the SVG file to the assets folder
+# SVG 파일을 assets 폴더에 복사합니다
 cp ./coverage/badge-branches.svg ./assets/badge-branches.svg
