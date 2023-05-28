@@ -4,7 +4,19 @@ import path from 'path';
 
 const validNameRegex = /^[a-zA-Z0-9-_]+$/;
 
-const kebabToCamelCase = str => str.replace(/-([a-z])/g, g => g[1].toUpperCase());
+const kebabToCamelCase = str =>
+  str
+    .replace(/[^a-zA-Z0-9- ]/g, '') // 문자, 숫자, 하이픈 또는 공백이 아닌 모든 문자 제거
+    .split(/-| /) // 하이픈 또는 공백으로 문자열 분할
+    .map((word, index) => {
+      // 첫 번째 단어를 소문자로 변환, 나머지 단어의 첫 번째 문자를 대문자로 변환
+      if (index === 0) {
+        return word.toLowerCase();
+      } else {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      }
+    })
+    .join(''); // 공백 없이 모든 단어 결합하여 camelCase 문자열 형성
 
 // 폴더가 존재하지 않는 경우 폴더가 생성되도록 하는 함수
 const ensureDirExists = dirPath => {
