@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 // Link: 'https://school.programmers.co.kr/learn/courses/30/lessons/120812'
 
 /**
  * @param {number[]} array
  * @returns {number}
  */
-const findMode = (array) => {
+const findMode = array => {
   const map = new Map();
 
-  array.forEach((element) => {
+  array.forEach(element => {
     if (map.has(element)) {
       map.set(element, map.get(element) + 1);
     } else {
@@ -16,7 +17,9 @@ const findMode = (array) => {
   });
 
   const maxCount = Math.max(...map.values());
-  const maxCountElements = [...map.entries()].filter(([_, count]) => count === maxCount).map(([element, _]) => element);
+  const maxCountElements = [...map.entries()]
+    .filter(([_, count]) => count === maxCount)
+    .map(([element, _]) => element);
 
   return maxCountElements.length === 1 ? maxCountElements[0] : -1;
 };
