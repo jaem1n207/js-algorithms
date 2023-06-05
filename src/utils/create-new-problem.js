@@ -68,6 +68,10 @@ const getProblemNameFromUser = async (categoryPath) => {
         .replace(/[^a-z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+/g, '-')
         .replace(/^-|-$/g, ''),
     validate: function (input) {
+      if (/[0-9]/.test(input.charAt(0))) {
+        return '문제 이름은 숫자로 시작할 수 없습니다.';
+      }
+
       if (!validProblemNameRegex.test(input)) {
         return '폴더 이름에는 한글, 영문, 숫자, 공백, -, _만 사용할 수 있습니다.';
       }
